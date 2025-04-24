@@ -1,0 +1,20 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: serverless-mcp-server
+
+Globals:
+  Function:
+    Timeout: 30
+    Runtime: nodejs22.x
+
+Resources:
+  McpServerFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: src/index.handler
+      Events:
+        McpApi:
+          Type: Api
+          Properties:
+            Path: /mcp
+            Method: post
